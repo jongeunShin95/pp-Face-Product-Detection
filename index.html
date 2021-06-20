@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <script>
+        function requestAPI() {
+            var api_key = 'api key';
+            var api_url = 'https://dapi.kakao.com/v2/vision/face/detect';
+            var image_url = 'https://t1.kakaocdn.net/vision_api/static/images/03.jpg';
+
+            $.ajax({
+                type: "POST",
+                url: api_url,
+                data: {
+                    image_url: image_url,
+                    threshold: 0.7
+                },
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.setRequestHeader("Authorization", "KakaoAK " + api_key);
+                }, success: function(res) {
+                    console.log(res);
+                }, error: function(err) {
+                    console.error(err);
+                }
+            })
+        }
+    </script>
+
+    <button onclick="requestAPI()">TEST</button>
+</body>
+</html>
