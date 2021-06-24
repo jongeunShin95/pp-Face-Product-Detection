@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ImageUrlInput from './components/ImageUrlInput';
 import ImageView from './components/ImageView';
 
 function App() {
+  const [url, setUrl] = useState('');
+
+  const onSetUrl = (url: string) => {
+    setUrl(url);
+  }
+
   return (
     <>
-      <ImageView /><br />
-      <ImageUrlInput />
+      <ImageView url={url} /><br />
+      <ImageUrlInput onSetUrl={onSetUrl} />
     </>
   );
 }

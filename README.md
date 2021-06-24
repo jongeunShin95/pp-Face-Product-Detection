@@ -10,3 +10,12 @@ thunk 사용해서 Kakao API를 활용해서 얼굴 검출이랑 상품 검출 �
 
 # &#10004; 0622
 * imageview, urlinput 틀 잡기<br />
+
+# &#9997; 0623 ~ (진행중)
+* 얼굴 검출 완료<br />
+* 상품 검출 진행중<br />
+
+<center>
+<img src="https://user-images.githubusercontent.com/20867824/123307432-7108a980-d55d-11eb-9094-0ab1863ee66c.png"  width="400" height="300"><br />
+얼굴 검출 화면
+</center>
