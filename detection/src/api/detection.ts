@@ -23,12 +23,33 @@ export async function getFaceInfo(image_url: string) {
     return res.data;
 }
 
-export interface KakaoFaceInfo {
-    rid:    string;
-    result: Result;
+export async function getProductInfo(image_url: string) {
+    var api_key = '199502000b4d8f7e32fff2b93146c7eb';
+    var api_url = 'https://dapi.kakao.com/v2/vision/product/detect';
+
+    axios.defaults.headers.post = null;
+
+    const params = {
+        image_url: image_url,
+        threshold: 0.7
+    };
+
+    const headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": "KakaoAK " + api_key
+    };
+
+    const res = await axios.post<KakaoProductInfo>(api_url, formUrlEncoded(params), { headers });
+    return res.data;
 }
 
-export interface Result {
+// Face
+export interface KakaoFaceInfo {
+    rid:    string;
+    result: FaceResult;
+}
+
+export interface FaceResult {
     width:  number;
     height: number;
     faces:  Face[];
@@ -66,4 +87,26 @@ export interface FacialPoints {
     nose:          Array<number[]>;
     right_eye:     Array<number[]>;
     right_eyebrow: Array<number[]>;
+}
+
+
+// Product
+export interface KakaoProductInfo {
+    rid:    string;
+    result: ProductResult;
+}
+
+export interface ProductResult {
+    width:   number;
+    objects: Object[];
+    height:  number;
+}
+
+export interface Object {
+    y2:    number;
+    x2:    number;
+    score: number;
+    y1:    number;
+    x1:    number;
+    class: string;
 }
